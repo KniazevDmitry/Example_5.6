@@ -29,9 +29,9 @@ namespace example_5._6
             Console.WriteLine("Do you have a pet? (yes/no)");
             bool HasPet = Console.ReadLine().Equals("yes", StringComparison.CurrentCultureIgnoreCase); //accepting yes without case (YES, Yes, yes, etc.)
 
-            //declare the arrays, not sure how else to do it??
-            User.PetsNames = new string[2];
-            User.FavColors = new string[2];
+            //initialize the arrays, not sure how else to do it??
+            User.PetsNames = Array.Empty<string>();
+            User.FavColors = Array.Empty<string>(); ;
 
             //ask how many pets a user have
             if (HasPet == true)
