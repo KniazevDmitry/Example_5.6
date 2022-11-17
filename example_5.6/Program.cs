@@ -4,6 +4,7 @@ namespace example_5._6
 {
     internal class Program
     {
+        //method to ask a user to input all data
         static (string FirstName, string LastName, int Age, bool HasPets, int PetsNumber, string[] PetsNames, int FavColorsNumber, string[] FavColors) UserData()
         {
             (string FirstName, string LastName, int Age, bool HasPets, int PetsNumber, string[] PetsNames, int FavColorsNumber, string[] FavColors) User;
@@ -70,7 +71,7 @@ namespace example_5._6
             return User;
         }
 
-
+        //method that asks a user to input a valid number if the previous entry was invalid
         static int NumberCorrection()
         {
             Console.WriteLine("You have not enetered a valid number. Please try again");
