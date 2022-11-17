@@ -6,16 +6,10 @@ namespace example_5._6
     {
         static void Main(string[] args)
         {
-            string firstName = "empty";
-            string lastName = "empty";
-            int age = 0;
-            bool hasPet = false;
-            
-            
-            UserProfile(firstName, lastName, age, hasPet);
+            UserProfile();
         }
 
-        static void UserProfile (string FirstName, string LastName, int Age, bool HasPet, params string[] PetsNames)
+        static void UserProfile ()
         {
             (string FirstName, string LastName, int Age, string[] PetsNames, int favColorsNumber, string[] FavColors) User;
 
@@ -33,7 +27,7 @@ namespace example_5._6
             }
 
             Console.WriteLine("Do you have a pet? (yes/no)");
-            HasPet = Console.ReadLine().Equals("yes", StringComparison.CurrentCultureIgnoreCase);
+            bool HasPet = Console.ReadLine().Equals("yes", StringComparison.CurrentCultureIgnoreCase); //accepting yes without case (YES, Yes, yes, etc.)
 
             //declare the arrays, not sure how else to do it??
             User.PetsNames = new string[2];
