@@ -6,13 +6,22 @@ namespace example_5._6
     {
         static void Main(string[] args)
         {
-            UserProfile();
+            string FirstName = "empty";
+            string LastName = "empty";
+            int Age = 0;
+            bool HasPets = false;
+            string[] PetsNames = Array.Empty<string>();
+            int favColorsNumber = 0;
+            string[] FavColors = Array.Empty<string>();
+
+
+            UserProfile(FirstName, LastName, Age, HasPets, PetsNames, favColorsNumber, FavColors);
         }
 
-        static void UserProfile ()
+        static object UserProfile(string FirstName, string LastName, int Age, bool HasPets, string[] PetsNames, int favColorsNumber, string[] FavColors)
         {
-            (string FirstName, string LastName, int Age, string[] PetsNames, int favColorsNumber, string[] FavColors) User;
-
+            (string FirstName, string LastName, int Age, bool HasPets, string[] PetsNames, int favColorsNumber, string[] FavColors) User;
+            
             Console.WriteLine("Enter your name: ");
             User.FirstName = Console.ReadLine();
 
@@ -27,14 +36,14 @@ namespace example_5._6
             }
 
             Console.WriteLine("Do you have a pet? (yes/no)");
-            bool HasPet = Console.ReadLine().Equals("yes", StringComparison.CurrentCultureIgnoreCase); //accepting yes without case (YES, Yes, yes, etc.)
+            bool UserHasPets = Console.ReadLine().Equals("yes", StringComparison.CurrentCultureIgnoreCase); //accepting yes without case (YES, Yes, yes, etc.)
 
             //initialize the arrays, not sure how else to do it??
             User.PetsNames = Array.Empty<string>();
             User.FavColors = Array.Empty<string>(); ;
 
             //ask how many pets a user have
-            if (HasPet == true)
+            if (UserHasPets == true)
             {
                 Console.WriteLine("How many pets do you have?");
                 bool numericCheck = int.TryParse(Console.ReadLine(), out int petsNum);
@@ -47,16 +56,16 @@ namespace example_5._6
 
             //ask a user about the number of fav colors
             Console.WriteLine("How many favorite colors do you have?"); 
-            bool checkNumeric = int.TryParse(Console.ReadLine(), out int favColorsNumber);
-            if (!checkNumeric || favColorsNumber < 0) //check if the entered value is numeric and greater than 0
+            bool checkNumeric = int.TryParse(Console.ReadLine(), out int favColorsNum);
+            if (!checkNumeric || favColorsNum < 0) //check if the entered value is numeric and greater than 0
             {
-                favColorsNumber = NumberCorrection();
+                favColorsNum = NumberCorrection();
             }
             
 
             //create an array of all fav colors
-            User.FavColors = new string[favColorsNumber];
-            for (int i = 0; i < favColorsNumber; i++)
+            User.FavColors = new string[favColorsNum];
+            for (int i = 0; i < favColorsNum; i++)
             {
                 Console.WriteLine($"Enter your favorite color number {i + 1}:");
                 User.FavColors[i] = Console.ReadLine();
@@ -68,7 +77,7 @@ namespace example_5._6
             Console.WriteLine($"Hi, {User.FirstName} {User.LastName}, you're {User.Age} years old");
             
             //print pets names if the user has them
-            if(HasPet == true)
+            if(UserHasPets == true)
             {
                 Console.WriteLine("You have the following pets:");
                 foreach (string petName in User.PetsNames)
@@ -82,13 +91,15 @@ namespace example_5._6
             }
 
             //print out the colors info
-            Console.WriteLine($"You have {favColorsNumber} favorite colors. They are: ");
+            Console.WriteLine($"You have {favColorsNum} favorite colors. They are: ");
             foreach(string favColor in User.FavColors)
             {
                 Console.WriteLine(favColor);
             }
 
-            Console.ReadLine();
+            return (FirstName, LastName, Age, HasPets, PetsNames, favColorsNum, FavColors);
+
+
         }
 
         //a method to list all pets names
